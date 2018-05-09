@@ -69,7 +69,7 @@
           <i @click="showEmoji(isShowEmoji=!isShowEmoji);" class="icon-emoji"></i>
         </div>
         <textarea @keyup.enter="send" @input="newLine" ref="textarea" v-model.trim="inputContent"
-                  placeholder="左上角还有智能机器人哦"></textarea>
+                  placeholder="旁边可以输入表情哦"></textarea>
         <button @click="send">发送</button>
       </div>
 
