@@ -145,11 +145,7 @@
           }, 0);
         })
         socket.on('login', data => {
-          socket.disconnect()
-        })
-        socket.on('enter', data => {
-          this.room = data.room
-          console.log(data)
+          //socket.disconnect()
         })
         /*
         socket.on('connect_error', d => {
@@ -176,9 +172,6 @@
         /**
          * About chat
          */
-        socket.on('leave', d => {
-          this.createSystemMessage(d.msg)
-        })
       })
     },
     mounted() {
