@@ -140,6 +140,7 @@
         });
         // 接收群聊消息
         socket.on('message', data => {
+          console.log(data)
           this.msgs.push(data);
           setTimeout(() => {
             this.oContent.scrollTop = this.oContent.scrollHeight;
