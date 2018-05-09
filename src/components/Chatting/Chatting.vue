@@ -81,7 +81,6 @@
 <script>
   import io from 'socket.io-client'
 
-  let socket = null;
 
   function createUserMessage(content, user, isMe) {
     console.log(content)
@@ -127,47 +126,46 @@
       }
     },
     created() {
-      if(socket){return}
+      if(this.socket){return}
       console.log(`wss://fast-oasis-63770.herokuapp.com?id=${this.$store.state.id}&name=${this.$store.state.name}`)
       this.socket = new io(`wss://fast-oasis-63770.herokuapp.com?id=${this.$store.state.id}&name=${this.$store.state.name}`)
-      socket = this.socket;
       this.socket.on('connect', () => {
         console.log('ok')
-        socket.on('join', (d) => {
+        this.socket.on('join', (d) => {
           console.log(d)
           //this.createSystemMessage(d.msg)
 
         });
         // 接收群聊消息
-        socket.on('message', data => {
+        this.socket.on('message', data => {
           console.log(data)
           this.msgs.push(data);
           setTimeout(() => {
             this.oContent.scrollTop = this.oContent.scrollHeight;
           }, 0);
         })
-        socket.on('login', data => {
-          //socket.disconnect()
+        this.socket.on('login', data => {
+          //this.socket.disconnect()
         })
         /*
-        socket.on('connect_error', d => {
+        this.socket.on('connect_error', d => {
           this.pushMessage(createSystemMessage(`connect_error: ${d}`))
         })
-        socket.on('connect_timeout', d => {
+        this.socket.on('connect_timeout', d => {
           this.pushMessage(createSystemMessage(`connect_timeout: ${d}`))
         })
-        socket.on('disconnect', reason => {
+        this.socket.on('disconnect', reason => {
           this.pushMessage(createSystemMessage(`disconnect: ${reason}`))
         })
-        socket.on('reconnect', attemptNumber => {
+        this.socket.on('reconnect', attemptNumber => {
           this.pushMessage(
               createSystemMessage(`reconnect success: ${attemptNumber}`),
           )
         })
-        socket.on('reconnect_failed', () => {
+        this.socket.on('reconnect_failed', () => {
           this.pushMessage(createSystemMessage('reconnect_failed'))
         })
-        socket.on('error', err => {
+        this.socket.on('error', err => {
           this.pushMessage(createSystemMessage(`error: ${err}`))
         })
         */
@@ -196,7 +194,7 @@
         if (this.inputContent === '') {
           return;
         } else {
-          socket.emit('message', {
+          this.socket.emit('message', {
             date: this.moment().format('YYYY-MM-DD HH:mm:ss'),
             loc: localStorage.addr,
             from: `${localStorage.name}`,
