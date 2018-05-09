@@ -127,6 +127,7 @@
       }
     },
     created() {
+      if(socket){return}
       console.log(`wss://fast-oasis-63770.herokuapp.com?id=${this.$store.state.id}&name=${this.$store.state.name}`)
       this.socket = new io(`wss://fast-oasis-63770.herokuapp.com?id=${this.$store.state.id}&name=${this.$store.state.name}`)
       socket = this.socket;
