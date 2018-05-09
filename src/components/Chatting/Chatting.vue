@@ -134,7 +134,7 @@
         console.log('ok')
         socket.on('join', (d) => {
           console.log(d)
-          this.createSystemMessage(d.msg)
+          //this.createSystemMessage(d.msg)
 
         });
         // 接收群聊消息
