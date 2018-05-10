@@ -2,28 +2,18 @@
   <transition name="slide-top">
     <div class="login">
 
-      <i @click="showAbout" class="icon-about" title="关于"></i>
-      <a href="https://microzz.com/" target="_blank" title="microzz.com"><i class="icon-website"></i></a>
       <i class="icon-chat"></i>
       <h2>请输入您的名字</h2>
       <input @keyup.enter="login" v-model.trim="name" type="text" autofocus>
-
-      <transition name="showAbout">
-        <About v-if="isShowAbout"></About>
-      </transition>
 
     </div>
   </transition>
 </template>
 
 <script>
-import About from '../About/About.vue';
 
 export default {
   name: 'login',
-  components: {
-    About
-  },
   data() {
     return {
       name: ''
@@ -44,9 +34,6 @@ export default {
       localStorage.name = this.name;
       this.$router.push('/Chatting');
     },
-    showAbout() {
-      this.$store.commit('showAbout', true);
-    }
   }
 }
 </script>

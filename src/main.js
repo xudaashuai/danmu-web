@@ -5,8 +5,6 @@ import App from './App'
 import router from './router'
 import moment from 'moment';
 import Vuex from 'vuex';
-import axios from 'axios'
-import VueAxios from 'vue-axios'
 
 // 本地化，中文时间显示
 moment.locale('zh-cn');
@@ -18,8 +16,6 @@ Vue.prototype.random = n => Math.floor(n * Math.random());
 // Vuex
 Vue.use(Vuex);
 
-// axios
-Vue.use(VueAxios, axios);
 
 const store = new Vuex.Store({
   state: {
@@ -28,7 +24,6 @@ const store = new Vuex.Store({
     // avatarUrl: `https://icdn.microzz.com/20170426_vue_chat/icon-avatar${Vue.prototype.random(21)}.svg`,
     avatarUrl: `http://omratag7g.bkt.clouddn.com/icon-avatar${Vue.prototype.random(21)}.svg`,
     addr: '未知',
-    isShowAbout: false
   },
 
   mutations: {
@@ -38,12 +33,6 @@ const store = new Vuex.Store({
     changeId(state, id) {
       state.id = id;
     },
-    setAddr(state, addr) {
-      state.addr = addr;
-    },
-    showAbout(state, flag) {
-      state.isShowAbout = flag;
-    }
   }
 });
 
