@@ -11,9 +11,6 @@
         <div class="chatting-title">
           <h2><i class="icon-group"></i>{{room.name}}</h2>
         </div>
-        <div class="chatting-menu">
-          <i @click="$router.push('/')" class="icon-menu"></i>
-        </div>
 
       </div>
 
@@ -133,6 +130,11 @@
         console.log('ok')
         this.socket.on('join', (d) => {
           console.log(d)
+          //this.createSystemMessage(d.msg)
+
+        });
+        this.socket.on('enter', (d) => {
+          this.room=d.room
           //this.createSystemMessage(d.msg)
 
         });
